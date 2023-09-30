@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic.ApplicationServices;
+using MyCRM.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyCRM
+namespace MyCRM.Data
 {
     public class CRMContext : DbContext
     {
@@ -14,11 +15,12 @@ namespace MyCRM
 
         public string DbPath { get; }
 
-        public CRMContext() {
+        public CRMContext()
+        {
             DbPath = "C:\\Users\\mafaz\\src\\repos\\MyCRM\\db\\local.db";
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite($"Data Source={DbPath}");
         }

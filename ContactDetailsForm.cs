@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MyCRM.Data;
+using MyCRM.Models;
 
 namespace MyCRM
 {
