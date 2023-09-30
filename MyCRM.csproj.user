@@ -7,8 +7,5 @@
     <Compile Update="ContactDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="EntryForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
   </ItemGroup>
 </Project>

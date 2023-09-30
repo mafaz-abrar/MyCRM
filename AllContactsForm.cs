@@ -8,32 +8,51 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using Microsoft.EntityFrameworkCore;
 
 namespace MyCRM
 {
     public partial class AllContactsForm : Form
     {
+        private CRMContext fDbContext;
+
         public AllContactsForm()
         {
             InitializeComponent();
 
-            StreamReader sr = SetupReader();
+            fDbContext = new CRMContext();
 
-            string? line = sr.ReadLine();
-
-            labelTitle.Text = line;
-
+            GetData();
         }
 
-        private void ButtonAdd_Click(object sender, EventArgs e)
+        private void GetData()
         {
+            var contacts = fDbContext.Contacts.ToList();
 
+            dataGridViewContacts.DataSource = contacts;
+
+            dataGridViewContacts.AutoResizeColumns();
+            dataGridViewContacts.AutoResizeRows();
         }
 
-        private StreamReader SetupReader()
+        private void buttonAdd_Click(object sender, EventArgs e)
         {
-            StreamReader sr = new StreamReader($"C:\\Users\\{Environment.UserName}\\Documents\\Sample.txt");
-            return sr;
-        } 
+            ContactDetailsForm detailForm = new ContactDetailsForm(fDbContext);
+            detailForm.Show();
+        }
+
+        private void buttonRefresh_Click(object sender, EventArgs e)
+        {
+            GetData();
+        }
+
+        private void buttonEdit_Click(object sender, EventArgs e)
+        {
+            ContactDetailsForm detailForm = new ContactDetailsForm(
+                fDbContext, dataGridViewContacts.CurrentRow.DataBoundItem as Contact
+            );
+
+            detailForm.Show();
+        }
     }
 }

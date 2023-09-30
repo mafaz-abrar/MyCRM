@@ -7,24 +7,15 @@ using System.Windows.Forms.VisualStyles;
 
 namespace MyCRM
 {
-    internal class Contact
+    public class Contact
     {
-        private string fName;
-        private DateTime fLastContactDate;
-        private string fNotes;
-
-        public Contact(string Name) {
-            fName = Name;
-        }
-
-        public string Name { 
-            get => fName;
-            set => fName = value;  
-        }
-
-        public void SetLastContactDate(int year, int month, int day) {
-            fLastContactDate = new DateTime(year, month, day);  
-        }
-
+        public int ContactId { get; set; }
+        public string? GivenNames { get; set; }
+        public string? FamilyName { get; set; }
+        public string? Emails { get; set; }
+        public string? FullyQualifiedPhoneNumbers { get; set; }
+        public string? OtherChannels { get; set; }
+        public string? LastConnectionDate { get; set; }
+        public string? RecentNotes { get; set; }
     }
 }
